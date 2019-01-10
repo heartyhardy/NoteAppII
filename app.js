@@ -19,6 +19,7 @@ const args =  yargs
     title:titleOptions,
     body:bodyOptions
 })
+.command('list', 'Lists all the notes.')
 .help()
 .argv
 
@@ -43,11 +44,14 @@ switch(command)
         break;
     
     case 'list':
-        var notes = notes.listall();
+        var allnotes = notes.listall();
         if(!_.isUndefined(notes))
         {
-            
+            allnotes.forEach(note => {
+                notes.log(note.title, note.body);
+            });
         }
+        break;
 
     default:
         console.log("Command not found.");

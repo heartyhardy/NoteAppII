@@ -39,14 +39,22 @@ var addnote = (title, body)=>{
 }
 
 var listall = () =>{
-    return this.fetchAll();
+    return fetchAll();
 }
 
 var log = (title, body) => {
-    
+    if(!_.isUndefined(title) || !_.isUndefined(body))
+    {
+        console.log("\x1b[37m","\n---------------------------------");
+        console.log("\x1b[32m",`\n---------${title}---------`);
+        console.log("\x1b[37m","\n---------------------------------");
+        console.log("\x1b[34m",`\n ${body}`);
+        console.log("\x1b[37m","\n---------------------------------\n\n");
+    }
 }
 
 module.exports = {
     addnote,
-    listall
+    listall,
+    log
 }
