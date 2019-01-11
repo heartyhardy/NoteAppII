@@ -42,6 +42,21 @@ var listall = () =>{
     return fetchAll();
 }
 
+var readnote = (title) =>{
+    if(!_.isUndefined(title))
+    {
+        var notes=fetchAll();
+        notes=notes.filter((note)=>note.title===title);
+
+        if(!_.isEmpty(notes))
+        {
+            log(notes[0].title,notes[0].body);
+        }
+        else
+            console.log("OOps! Specified note does not exist in the notes databse.");
+    }
+}
+
 var log = (title, body) => {
     if(!_.isUndefined(title) || !_.isUndefined(body))
     {
@@ -56,5 +71,6 @@ var log = (title, body) => {
 module.exports = {
     addnote,
     listall,
-    log
+    log,
+    readnote
 }

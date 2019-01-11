@@ -20,6 +20,9 @@ const args =  yargs
     body:bodyOptions
 })
 .command('list', 'Lists all the notes.')
+.command('read', 'Read a specified note by providing a title.',{
+    title:titleOptions
+})
 .help()
 .argv
 
@@ -50,6 +53,17 @@ switch(command)
             allnotes.forEach(note => {
                 notes.log(note.title, note.body);
             });
+        }
+        break;
+
+    case 'read':
+        if(!_.isUndefined(args.title))
+        {
+            notes.readnote(args.title);
+        }
+        else
+        {
+            console.log("Please specify the title of the note. (--title=<note name>)");
         }
         break;
 
